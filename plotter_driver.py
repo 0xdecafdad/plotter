@@ -1,4 +1,4 @@
-import selenium
+from selenium import webdriver
 import csv
 
 # Return contents of csv file as list of dictionaries
@@ -11,3 +11,10 @@ def get_contents_csv(
       rows.append(row)
 
   return rows
+
+# Create Selenium driver
+def create_driver(
+    url):
+  driver = webdriver.Firefox()
+
+  return driver.get(url)
