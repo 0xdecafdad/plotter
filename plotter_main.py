@@ -1,11 +1,14 @@
 import plotter_driver
+import sys
 
 def main():
-  rows = plotter_driver.get_contents_csv("./sample-input.csv")
-  print(rows)
+  # Get command line arguments
+  latitude = sys.argv[1]
+  longitude = sys.argv[2]
+  #multiplier = sys.argv[3]
+  #csv_file = sys.argv[4]
 
-  url = "http://movable-type.co.uk/scripts/latlong.html"
-  driver = plotter_driver.create_driver(url)
+  print(plotter_driver.convert_coords_decimal_to_degree(latitude, longitude)) 
 
 if __name__ == "__main__":
   main()
