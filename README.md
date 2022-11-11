@@ -36,3 +36,22 @@ Pseudocode
 8. Write converted latitude and longitude to output csv
 9. Input latitude and longitude (not converted) to webpage along with next bearing and multiplied distance
 10. Repeat until EOF (input csv) is reached
+
+# Documentation
+--
+## plotter_driver.py
+**get_contents_csv( path_to_csv )**
+Read from a csv with 2 columns and *x* rows where the first row is the columns headings. First column should be absolute bearing and the second should be distance (cm). Returns contents of csv as a list of dictionaries.
+
+**create_driver( url )**
+Create a Selenium Firefox driver at specified url.
+
+**convert_decimal_to_triple( coord )**
+Convert coordinate in format xx.xxxx to xx° xx′ xx″ N/S/E/W.
+
+**convert_degree_to_decimal( coord )**
+Convert coordinate in format xx° xx′ xx″ N/S/E/W to xx.xxxx.
+
+**convert_coords_decimal_to_degree( lat, long )**
+Convert tuple of coordinates in format xx.xxxx, xx.xxxx to tuple of coordinates in format xx° xx′ xx″ N/S, xx° xx′ xx″ E/W.
+
