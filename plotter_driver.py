@@ -1,5 +1,10 @@
 from selenium import webdriver
 import csv
+import time
+
+########################
+# FILE READING/WRITING #
+########################
 
 # Return contents of csv file as list of dictionaries
 def get_contents_csv(
@@ -12,12 +17,33 @@ def get_contents_csv(
 
   return rows
 
+############
+# SELENIUM #
+############
+
 # Connect to webpage
 def create_driver(
     url):
   driver = webdriver.Firefox()
+  driver.get(url)
 
-  return driver.get(url)
+  return driver
+
+# Gracefully exit driver after three second delay
+def destroy_driver(
+    driver):
+  time.sleep(3)
+  driver.quit()
+  print("Driver successfully closed.")
+
+# Locate element on page
+def locate_element(
+    driver):
+  return driver.find_element(By.ID, "rhumb-dest")
+
+##############
+# CONVERSION #
+##############
 
 # Convert decimal to triple (degree, minute, second)
 def convert_decimal_to_triple(
