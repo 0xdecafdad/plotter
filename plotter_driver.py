@@ -1,4 +1,5 @@
 from selenium import webdriver
+from selenium.webdriver.common.by import By
 import csv
 import time
 
@@ -37,9 +38,20 @@ def destroy_driver(
   print("Driver successfully closed.")
 
 # Locate element on page
-def locate_element(
-    driver):
-  return driver.find_element(By.ID, "rhumb-dest")
+def input_coords(
+    driver,
+    latitude,
+    longitude):
+  form = driver.find_element(By.ID, "rhumb-dest")
+  lat = form.find_element(By.NAME, "lat1")
+  long = form.find_element(By.NAME, "lon1")
+  lat.clear()
+  long.clear()
+
+  (x,y) = convert_coords_decimal_to_degree(latitude, longitude)
+
+  lat.send_keys(x)
+  long.send_keys(y)
 
 ##############
 # CONVERSION #
@@ -83,7 +95,8 @@ def convert_coords_decimal_to_degree(
     long_degree = long_degree.format('W')
 
   # Return latitude and longitude as a tuple
-  return "({}, {})".format(lat_degree, long_degree)
+  #return "({}, {})".format(lat_degree, long_degree)
+  return (lat_degree, long_degree)
 
 
 # Convert coords from degrees to decimal
