@@ -11,11 +11,23 @@ To use this program, run the following command with arguments...
 ## Methods
 plotter_driver.py contains the following methods..
 
-**get_contents_csv( path_to_csv )**
+**get_contents_csv(**
+	**path_to_csv)**
 Read from a csv with 2 columns and *x* rows where the first row is the columns headings. First column should be absolute bearing and the second should be distance (cm). Returns contents of csv as a list of dictionaries.
 
-**create_driver( url )**
+**create_driver(**
+	**url)**
 Create a Selenium Firefox driver at specified url.
+
+**destroy_driver(**
+	**driver)**
+Gracefully exit driver after three second delay
+
+**input_coords(**
+	**driver,**
+	**latitude,**
+	**longitude)**
+
 
 **convert_decimal_to_triple( coord )**
 Convert coordinate in format xx.xxxx to xx° xx′ xx″ N/S/E/W.
