@@ -1,4 +1,32 @@
-# create-cont
+# EZ-Plotter
+Quickly convert a flat map to a 3D Orthographic projection given starting coordinates and a list of distances and bearings!
+
+This program uses the Rhumb Lines formula from [this site](http://movable-type.co.uk/scripts/latlong.html) to calculate the the coordinates on a globe for a series of points determined by a distance and absolute bearing.
+
+## Usage
+To use this program, run the following command with arguments...
+
+	python plotter_main.py starting-latitude starting-longitude
+
+## Methods
+plotter_driver.py contains the following methods..
+
+**get_contents_csv( path_to_csv )**
+Read from a csv with 2 columns and *x* rows where the first row is the columns headings. First column should be absolute bearing and the second should be distance (cm). Returns contents of csv as a list of dictionaries.
+
+**create_driver( url )**
+Create a Selenium Firefox driver at specified url.
+
+**convert_decimal_to_triple( coord )**
+Convert coordinate in format xx.xxxx to xx° xx′ xx″ N/S/E/W.
+
+**convert_degree_to_decimal( coord )**
+Convert coordinate in format xx° xx′ xx″ N/S/E/W to xx.xxxx.
+
+**convert_coords_decimal_to_degree( lat, long )**
+Convert tuple of coordinates in format xx.xxxx, xx.xxxx to tuple of coordinates in format xx° xx′ xx″ N/S, xx° xx′ xx″ E/W.
+ 
+-----
 
 Description: Plot points using script on website given latitude and longitude of initial point then bearing and distance for all points to be plotted
 
