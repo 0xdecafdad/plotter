@@ -19,12 +19,28 @@ def main():
   
   # Send initial coordinates to webpage
   try:
-    print(plotter.send_coords(driver, lat_init, long_init))
+    plotter.send_coords(driver, lat_init, long_init)
   except Exception as e:
     print(e)
 
-  # Exit Selenium driver after three second delay
-  time.sleep(3)
+  time.sleep(3) # give time for coordinates to send
+
+  # Send bearing and distance to webpage
+  try:
+    plotter.send_bearing_and_distance(driver, 75, 250)
+  except Exception as e:
+    print(e)
+
+  time.sleep(3) # give time for bearing and distance to send
+
+  # Get destination point
+  try:
+    print(plotter.get_dest(driver))
+  except Exception as e:
+    print(e)
+
+  # Exit Selenium driver after a five second delay
+  time.sleep(5)
   driver.quit()
   print("Driver exited successfully...") # optional console output
 
