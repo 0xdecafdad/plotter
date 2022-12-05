@@ -53,6 +53,17 @@ def input_coords(
   lat.send_keys(x)
   long.send_keys(y)
 
+def get_dest(
+    driver):
+  form = driver.find_element(By.ID, "rhumb-dest")
+  
+  # Split text of destination point element into latitude and longitude
+  dest_point = form.find_element(By.CLASS_NAME, "result-point").text.split(", ")
+  lat = dest_point[0]
+  long = dest_point[1]
+ 
+  return (lat, long)
+
 ##############
 # CONVERSION #
 ##############

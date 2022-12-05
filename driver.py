@@ -18,6 +18,8 @@ def main():
   except Exception as e:
     print(e)
 
+  print(plotter_driver.get_dest(driver))
+
   #plotter_driver.destroy_driver(driver)
 
 if __name__ == "__main__":
