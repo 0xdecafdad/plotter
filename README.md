@@ -15,14 +15,6 @@ plotter.py contains the following methods..
 	**path_to_csv)**\
 Read from a csv with 2 columns and *x* rows where the first row is the columns headings. First column should be absolute bearing and the second should be distance (cm). Returns contents of csv as a list of dictionaries.
 
-**create_driver(**\
-	**url)**\
-Create a Selenium Firefox driver at specified url.
-
-**destroy_driver(**\
-	**driver)**\
-Gracefully exit driver after three second delay
-
 **input_coords(**\
 	**driver,**\
 	**latitude,**\
@@ -44,8 +36,8 @@ Convert tuple of coordinates in format xx.xxxx, xx.xxxx to tuple of coordinates 
 Quick overview of the logic behind driver.py...
 
 1. Create Selenium driver
-2. Initialize iterator for input file
-3. Send initial coordinates to webpage
+2. Send initial coordinates to webpage
+3. Initialize iterator for input file
 4. Send bearing and distance from first line of input file to webpage
 5. Get destination coordinates output by webpage
 6. Write destination coordinates to file in specified format (xx.xxxx, xx.xxxx)
