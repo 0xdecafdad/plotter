@@ -9,7 +9,7 @@ To use this program, run the following command with arguments...
 	python plotter_main.py starting-latitude starting-longitude
 
 ## Methods
-plotter_driver.py contains the following methods..
+plotter.py contains the following methods..
 
 **get_contents_csv(**\
 	**path_to_csv)**\

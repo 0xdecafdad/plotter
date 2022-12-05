@@ -1,7 +1,6 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 import csv
-import time
 
 ########################
 # FILE READING/WRITING #
@@ -21,21 +20,6 @@ def get_contents_csv(
 ############
 # SELENIUM #
 ############
-
-# Connect to webpage
-def create_driver(
-    url):
-  driver = webdriver.Firefox()
-  driver.get(url)
-
-  return driver
-
-# Gracefully exit driver after three second delay
-def destroy_driver(
-    driver):
-  time.sleep(3)
-  driver.quit()
-  print("Driver successfully closed.")
 
 # Locate element on page
 def input_coords(
