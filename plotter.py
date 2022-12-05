@@ -1,3 +1,4 @@
+# Imports
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 import csv
@@ -21,24 +22,30 @@ def get_contents_csv(
 # SELENIUM #
 ############
 
-# Locate element on page
-def input_coords(
+# Input specified latitude and longitude to respective fields on webpage
+def send_coords(
     driver,
-    latitude,
-    longitude):
+    lat,
+    long):
+  # Locate element on page and clear fields
   form = driver.find_element(By.ID, "rhumb-dest")
-  lat = form.find_element(By.NAME, "lat1")
-  long = form.find_element(By.NAME, "lon1")
-  lat.clear()
-  long.clear()
+  lat_field = form.find_element(By.NAME, "lat1")
+  lon_field = form.find_element(By.NAME, "lon1")
+  lat_field.clear()
+  long_field.clear()
 
-  (x,y) = convert_coords_decimal_to_degree(latitude, longitude)
+  # Convert lat and long to desired form
+  (lat_converted, long_converted) = convert_coords_decimal_to_degree(lat, long)
 
-  lat.send_keys(x)
-  long.send_keys(y)
+  # Enter lat and long into field on webpage
+  lat_field.send_keys(lat_converted)
+  long_field.send_keys(long_converted)
 
+# Get destination point from webpage
+# BUG: Lat and long output with strange characters instead of proper symbols
 def get_dest(
     driver):
+  # Locate element on page
   form = driver.find_element(By.ID, "rhumb-dest")
   
   # Split text of destination point element into latitude and longitude
@@ -46,13 +53,15 @@ def get_dest(
   lat = dest_point[0]
   long = dest_point[1]
  
+  # Return destination point as tuple
   return (lat, long)
 
 ##############
 # CONVERSION #
 ##############
 
-# Convert decimal to triple (degree, minute, second)
+# Convert coordinate in form xx.xxxx (gplates decimal) to
+# triple with form (degree, minute, second)
 def convert_decimal_to_triple(
     coord):
   degree = coord[:2]
@@ -61,13 +70,13 @@ def convert_decimal_to_triple(
 
   return (degree,minute,second)
 
-# Convert coordinate to decimal
+# Convert coordinate in long format to form xx.xxxx (gplates decimal)
 def convert_degree_to_decimal(
     coord):
   return coord[:2] + "." + coord[4:6] + coord[8:10]
 
-# Convert coords from decimal to degrees
-def convert_coords_decimal_to_degree(
+# Convert coordinate in form xx.xxxx (gplates decimal) to long format
+def convert_decimal_to_degree(
     lat,
     long):
   lat_triple = convert_decimal_to_triple(lat)
@@ -92,14 +101,3 @@ def convert_coords_decimal_to_degree(
   # Return latitude and longitude as a tuple
   #return "({}, {})".format(lat_degree, long_degree)
   return (lat_degree, long_degree)
-
-
-# Convert coords from degrees to decimal
-#def convert_coords_degree_to_decimal(
-#    lat,
-#    long):
-
-# Send initial latitude and longitude to webpage
-#def send_coords(
-#    lat,
-#    long):

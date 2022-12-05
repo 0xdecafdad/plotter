@@ -1,7 +1,7 @@
 # Imports
 from selenium import webdriver
 from selenium.webdriver.common.by import By
-import driver
+import plotter
 import sys
 import time
 
