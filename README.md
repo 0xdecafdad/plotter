@@ -39,7 +39,20 @@ Convert coordinate in format xx° xx′ xx″ N/S/E/W to xx.xxxx.
 
 **convert_coords_decimal_to_degree( lat, long )**
 Convert tuple of coordinates in format xx.xxxx, xx.xxxx to tuple of coordinates in format xx° xx′ xx″ N/S, xx° xx′ xx″ E/W.
- 
+
+## Logic 
+Quick overview of the logic behind driver.py...
+
+1. Create Selenium driver
+2. Initialize iterator for input file
+3. Send initial coordinates to webpage
+4. Send bearing and distance from first line of input file to webpage
+5. Get destination coordinates output by webpage
+6. Write destination coordinates to file in specified format (xx.xxxx, xx.xxxx)
+7. Send destination coordinates to webpage along with bearing and distance from next line of input file to webpage
+8. Repeat for all subsequent lines of input file
+9. Exit Selenium driver
+
 -----
 
 Description: Plot points using script on website given latitude and longitude of initial point then bearing and distance for all points to be plotted
