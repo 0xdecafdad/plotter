@@ -13,7 +13,7 @@ def main():
   #input_file = sys.argv[4] # file containing bearing and distance for each point
 
   # Create Selenium driver
-  driver = webdriver.Chrome()
+  driver = webdriver.Firefox()
   driver.get("http://movable-type.co.uk/scripts/latlong.html")
   print("Driver created successfully...") # optional console output
   
