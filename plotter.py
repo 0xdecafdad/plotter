@@ -1,5 +1,6 @@
 # Imports
 from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 import csv
 
@@ -40,6 +41,7 @@ def send_coords(
   # Enter lat and long into respective fields on webpage
   lat_field.send_keys(lat_converted)
   long_field.send_keys(long_converted)
+  long_field.send_keys(Keys.RETURN)
 
   return 0
 
@@ -52,8 +54,8 @@ def get_dest(
   
   # Split text of destination point element into latitude and longitude
   dest_point = form.find_element(By.CLASS_NAME, "result-point").text.split(", ")
-  lat = dest_point[0]
-  long = dest_point[1]
+  lat = dest_point[0].replace("\u202f", " ")
+  long = dest_point[1].replace("\u202f", " ")
  
   # Return destination point as tuple
   return (lat, long)
@@ -79,6 +81,7 @@ def send_bearing_and_distance(
   # Enter bearing and distance to respective fields on webpage
   bearing_field.send_keys(bearing)
   distance_field.send_keys(distance_multiplied)
+  distance_field.send_keys(Keys.RETURN)
 
   return 0
 
