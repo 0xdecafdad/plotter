@@ -9,8 +9,8 @@ def main():
   # Get command line arguments
   lat_init = sys.argv[1] # initial latitude
   long_init = sys.argv[2] # initial longitude
-  #multiplier = sys.argv[3] # multiplier for distance (affects scale)
-  #input_file = sys.argv[4] # file containing bearing and distance for each point
+  input_file = sys.argv[3] # file containing bearing and distance for each point
+  #multiplier = sys.argv[4] # multiplier for distance (affects scale)
 
   # Create Selenium driver
   driver = webdriver.Firefox()
@@ -23,24 +23,25 @@ def main():
   except Exception as e:
     print(e)
 
-  time.sleep(3) # give time for coordinates to send
+  # Main loop
+  # Open input file for reading and output file for writing
+  with open(input_file, 'r') as input_file, open('output_file.txt', 'w', newline='') as output_file:
+    for line in input_file:
+      # Process input and send to webpage
+      line_proc = line.strip().split(',')
+      bearing = line_proc[0]
+      distance_raw = line_proc[1]
+      plotter.send_bearing_and_distance(driver, bearing, distance_raw)
+      time.sleep(1)
 
-  # Send bearing and distance to webpage
-  try:
-    plotter.send_bearing_and_distance(driver, 75, 250)
-  except Exception as e:
-    print(e)
+      # Get destination coordinates now that all necessary info has been passed to webpage
+      dest_point = plotter.get_dest(driver)
+      print(dest_point)
 
-  time.sleep(3) # give time for bearing and distance to send
-
-  # Get destination point
-  try:
-    print(plotter.get_dest(driver))
-  except Exception as e:
-    print(e)
+      # Write to output file in format xx.xxxx, xx.xxxx
 
   # Exit Selenium driver after a five second delay
-  time.sleep(5)
+  time.sleep(3)
   driver.quit()
   print("Driver exited successfully...") # optional console output
 
