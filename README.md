@@ -1,4 +1,4 @@
-# EZ-Plotter
+# Plotter
 Quickly convert a flat map to a 3D Orthographic projection given starting coordinates and a list of distances and bearings!
 
 This program uses the Rhumb Lines formula from [this site](http://movable-type.co.uk/scripts/latlong.html) to calculate the the coordinates on a globe for a series of points determined by a distance and absolute bearing.
